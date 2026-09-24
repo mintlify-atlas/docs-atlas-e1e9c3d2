@@ -1,5 +1,5 @@
 ---
-title: "MCP Server Tools and Resources Reference"
+title: "Skillset MCP Server: Tools and Resources Reference"
 sidebarTitle: "Tools"
 description: "Complete parameter and return-shape reference for all seven MCP tools and two resource templates the Skillset MCP server exposes to coding agents."
 ---
@@ -77,9 +77,6 @@ Read one Skill's full `SKILL.md` body and file list from the Registry **without 
     <ParamField path="name" type="string" required>
       The Skill's name, exactly as `search_skills` reported it.
     </ParamField>
-    <ParamField path="namespace" type="string">
-      The Namespace (`owner/repo` or Registry domain) when two Skills share the same name. Omit when the name is unambiguous.
-    </ParamField>
   </Tab>
   <Tab title="Returns">
     <ResponseField name="skill" type="object">
@@ -114,12 +111,6 @@ Download and install one or more Skills from the Registry into the directory the
   <Tab title="Parameters">
     <ParamField path="names" type="string[]" required>
       The Skill names to install, exactly as `search_skills` reported them. One bad name does not stop the rest of the batch.
-    </ParamField>
-    <ParamField path="agent" type="string">
-      Override the auto-detected agent identity for this call. Omit in normal use — the server detects the running agent automatically.
-    </ParamField>
-    <ParamField path="scope" type="string">
-      Override the configured install scope (`project` or `user`) for this call. Omit to use the server's configured default.
     </ParamField>
     <ParamField path="overwrite" type="boolean">
       Replace an already-installed Skill completely. Only set this when the user has explicitly asked to update or replace an existing install — never on a routine install.

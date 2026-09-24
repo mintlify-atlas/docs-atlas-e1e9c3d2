@@ -1,7 +1,7 @@
 ---
-title: "Get Started with Skillset in Under 5 Minutes"
+title: "Get Started with Skillset: Deploy, Publish, and Install"
 sidebarTitle: "Quickstart"
-description: "Deploy a Skillset Registry with Docker, publish your first Skill from the CLI, and install it into a coding agent — start to finish in under five minutes."
+description: "Deploy a Skillset Registry with Docker, publish your first Skill from the CLI, and install it into a coding agent — start to finish in five minutes."
 ---
 
 This guide walks you through deploying a Skillset Registry on your own machine, creating a Superadmin account, publishing your first Skill, and installing it into a coding agent. By the end you will have a working Registry and a Skill ready to use.
@@ -10,7 +10,7 @@ This guide walks you through deploying a Skillset Registry on your own machine, 
 
 Before you begin, make sure you have:
 
-- **Docker** (with the `compose` plugin) — to run the app, Postgres, and MinIO
+- **Docker** (with the `compose` plugin) — to run the app and Postgres
 - **Node.js 18+** and **npm** — to install and run the CLI
 - **git** — required by the CLI when installing or publishing from repository URLs
 
@@ -26,7 +26,7 @@ cd skillset
 cp .env.example .env
 ```
 
-Open `.env` and fill in the four required values. The defaults for `DATABASE_URL`, `STORAGE_BUCKET`, and the storage credentials already match what `docker-compose.yml` provisions, so you only need to set these two:
+Open `.env` and fill in the required values. The defaults for `DATABASE_URL` and Postgres credentials already match what `docker-compose.yml` provisions. If you are using a local MinIO instance for object storage, the `STORAGE_*` defaults point to it; otherwise update them to your S3 bucket. The two variables you must set regardless are:
 
 <CodeGroup>
 
@@ -49,7 +49,7 @@ BETTER_AUTH_SECRET=
 # Required: every session cookie and OAuth redirect URI is built from it.
 PUBLIC_URL=
 
-# Object storage — values below match the MinIO docker-compose.yml provisions.
+# Object storage — values below target a local MinIO instance; update for S3 in production.
 STORAGE_BUCKET=skill-registry
 STORAGE_REGION=us-east-1
 STORAGE_ACCESS_KEY_ID=minioadmin
@@ -79,13 +79,12 @@ LOG_LEVEL=info
 docker compose up
 ```
 
-This starts three containers:
+This starts two containers:
 
 | Container | What it does |
 |---|---|
 | `app` | Runs the API and serves the web UI at `http://localhost:3000` |
 | `postgres` | Stores all Resource metadata; migrations run automatically on startup |
-| `minio` | S3-compatible object storage for Skill and Plugin Artifacts |
 
 Wait for the log line `Listening on http://0.0.0.0:3000` before continuing. The app waits for Postgres to be ready and runs all migrations before it starts serving traffic.
 
@@ -206,7 +205,7 @@ skillset list
 
 ## What just happened
 
-You deployed a full Skillset Registry (app + Postgres + object storage), created a Superadmin account, published a Skill with the CLI, and installed it into your project. Your Registry is now ready for your team.
+You deployed a full Skillset Registry (app + Postgres), created a Superadmin account, published a Skill with the CLI, and installed it into your project. Your Registry is now ready for your team.
 
 <CardGroup cols={2}>
   <Card title="CLI Commands" icon="terminal" href="cli/commands">

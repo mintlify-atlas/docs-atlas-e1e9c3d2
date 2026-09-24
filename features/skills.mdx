@@ -14,7 +14,7 @@ The Registry stores a Skill as an **Artifact** — one object in S3 per file, un
 
 ## SKILL.md frontmatter
 
-`SKILL.md` must open with a YAML frontmatter block fenced by `---`. Two fields are required; four are optional.
+`SKILL.md` must open with a YAML frontmatter block fenced by `---`. Two frontmatter fields are required; four are optional. The content below the frontmatter fence (the `body`) is also required — a `SKILL.md` with no body is rejected.
 
 <ParamField path="name" type="string" required>
   Lowercase alphanumerics and hyphens; no leading, trailing, or doubled hyphen. Maximum 64 characters. Must match `SKILL_NAME_PATTERN`: `/^[a-z0-9]+(-[a-z0-9]+)*$/`.

@@ -1,5 +1,5 @@
 ---
-title: "Authentication and Roles in Skillset"
+title: "Skillset Authentication: Sessions, Tokens, and Roles"
 sidebarTitle: "Overview"
 description: "How Skillset controls access: two credential types, four roles from reader to superadmin, and why catalog reads need no authentication at all."
 ---
@@ -53,7 +53,7 @@ Pass a Token as an `Authorization` header on any API request:
 Authorization: Bearer <token>
 ```
 
-See [Tokens](auth/tokens.mdx) for minting, using, and revoking Tokens.
+See [Tokens](/auth/tokens) for minting, using, and revoking Tokens.
 
 ## Password login
 
@@ -61,9 +61,9 @@ Password authentication is always available, even when one or more Identity Prov
 
 ## Identity Providers
 
-Admins can configure up to three Identity Providers — Google Workspace, Microsoft Entra, and GitHub OAuth — so that Users can sign in without a locally-managed password. They appear as additional buttons on the login page alongside the password form.
+The Superadmin can configure up to three Identity Providers — Google Workspace, Microsoft Entra, and GitHub OAuth — so that Users can sign in without a locally-managed password. They appear as additional buttons on the login page alongside the password form.
 
-See [Identity Providers](auth/identity-providers.mdx) for setup instructions.
+See [Identity Providers](/auth/identity-providers) for setup instructions.
 
 ## The `must_change_password` flag
 

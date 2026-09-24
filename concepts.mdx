@@ -234,6 +234,27 @@ SKILLSET_TOKEN=<token>
 
 </Accordion>
 
+<Accordion title="Agent and Scope">
+
+### Agent
+
+An **Agent** is a coding agent that reads Skills from a conventional directory on a developer's machine. `skillset install` writes to the canonical `.agents/skills/<name>/` directory and symlinks the chosen Agent's own skills directory to it. The list of supported Agents is hand-curated and each entry is verified against that Agent's own documentation.
+
+The Agent table covers **Skills only** — an MCP Server is installed by merging a project's `.mcp.json` and names no Agent.
+
+### Scope
+
+**Scope** is where a Resource is installed on a machine — either the current project, or the Agent's user-level directory. Pass `--scope user` to install into the user-level directory instead of the project root.
+
+An MCP Server has project Scope only.
+
+```bash
+skillset install code-review               # project scope (default)
+skillset install code-review --scope user  # user-level directory
+```
+
+</Accordion>
+
 ## Quick Reference
 
 | Term | One-line definition |
@@ -245,9 +266,13 @@ SKILLSET_TOKEN=<token>
 | **Tag** | Short label for browsing/filtering; shared across all Kinds |
 | **Lockfile** | `skillset-lock.json` tracking installed Skill state |
 | **Status** | How an installed Skill stands: `current`, `outdated`, `modified`, or `missing` |
+| **Source** | Where a Resource came from — repository URL for Imports, reverse-DNS Registry domain for direct publishes |
 | **Import** | One-time copy from a Git Provider into the Registry |
 | **Submission** | URL-installed Skill pending Admin approval |
 | **Integration** | Registry's registration with a Git Provider |
 | **Connection** | A writer's personal grant of repo access to the Registry |
 | **Token** | Secret a User mints for CLI access |
+| **Agent** | A coding agent that reads Skills from a conventional directory on a developer's machine |
+| **Scope** | Where a Skill is installed — current project or the Agent's user-level directory |
+| **Identity Provider** | A configured way for a User to sign in without a password (Google Workspace, Microsoft Entra, or GitHub) |
 | **Superadmin** | The first User; one per Registry, permanent |

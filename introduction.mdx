@@ -1,7 +1,7 @@
 ---
 title: "Skillset: Self-Hosted Skill Registry for Coding Agents"
 sidebarTitle: "Introduction"
-description: "Skillset is a self-hosted registry for Skills, MCP Servers, and Plugins — the resources a coding agent loads — hosted entirely on your own infrastructure."
+description: "Skillset is a self-hosted registry for Skills, MCP Servers, and Plugins that your team publishes, discovers, and installs on your own infrastructure."
 ---
 
 Skillset is a self-hosted registry that lets your team publish, discover, and install the resources a coding agent needs: **Skills**, **MCP Servers**, and **Plugins**. This page explains what Skillset is, how its three Resource kinds differ, how access is controlled, and the four components that make up a running Registry.
@@ -58,7 +58,7 @@ Skillset follows a role hierarchy. Catalog reads — browsing, searching, previe
 
 ## The Four Components
 
-A Skillset deployment runs as a single `docker compose up` command that starts one application container, a Postgres database, and a MinIO object-storage instance. Within that application, four components work together:
+A Skillset deployment runs as a single `docker compose up` command that starts one application container and a Postgres database. Within that application, four components work together:
 
 <CardGroup cols={2}>
   <Card title="Web UI" icon="globe">

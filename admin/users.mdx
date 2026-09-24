@@ -1,5 +1,5 @@
 ---
-title: "Manage Users and Roles in Skillset"
+title: "Managing Users, Roles, and Tokens in Your Registry"
 sidebarTitle: "Users"
 description: "Create, update, and remove Users in your Registry. Covers all four roles — reader, writer, admin, superadmin — and how each is assigned and managed."
 ---
@@ -117,7 +117,7 @@ curl -X PATCH https://your-registry.example.com/api/users/<user_id> \
 ```
 
 <Note>
-  An Admin cannot change their own role through this endpoint, and the Superadmin's role cannot be changed by anyone. Both restrictions return a `422` error.
+  An Admin cannot change their own role through this endpoint — returns `422`. The Superadmin's role cannot be changed by anyone — returns `409`.
 </Note>
 
 ## Removing Users
@@ -133,7 +133,7 @@ curl -X DELETE https://your-registry.example.com/api/users/<user_id> \
   -H "Authorization: Bearer <token>"
 ```
 
-A successful deletion returns `204 No Content`. Attempting to remove yourself or the Superadmin returns `422`.
+A successful deletion returns `204 No Content`. Attempting to remove yourself returns `422`. Attempting to remove the Superadmin returns `409`.
 
 ## User Profile and Password
 
@@ -194,5 +194,8 @@ When a User signs in via a configured Identity Provider (Google Workspace, Micro
 | `GET` | `/api/users/me` | any authenticated | Get the current User's profile |
 | `PATCH` | `/api/users/me` | any authenticated | Update own first or last name |
 | `PUT` | `/api/users/me/password` | any authenticated | Change own password |
+| `GET` | `/api/users/me/tokens` | any authenticated | List own Tokens, newest first |
+| `POST` | `/api/users/me/tokens` | any authenticated | Mint a new Token |
+| `DELETE` | `/api/users/me/tokens/:token_id` | any authenticated | Delete a Token |
 | `PATCH` | `/api/users/:user_id` | admin | Change another User's role |
 | `DELETE` | `/api/users/:user_id` | admin | Remove a User |

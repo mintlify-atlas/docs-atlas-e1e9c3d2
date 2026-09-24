@@ -48,7 +48,7 @@ GET /api/resources?q=code+review&kind=skill&tag_id=<id>&page=1&page_size=20
 </ParamField>
 
 <ParamField query="sort_by" type="string">
-  One of `relevance`, `updated_at`, or `installs`. When `q` is set, defaults to `relevance`; otherwise defaults to `updated_at`. Passing `relevance` with no query silently falls back to `updated_at`.
+  One of `relevance`, `updated_at`, or `installs`. When `q` is set, defaults to `relevance`; otherwise defaults to `updated_at`. Passing `relevance` with no query silently falls back to `updated_at`. An unrecognised value is rejected with a 400.
 </ParamField>
 
 <ParamField query="sort_order" type="string">
@@ -100,6 +100,10 @@ skillset search code-review --json
 ```
 
 The `--tag` flag accepts a Tag name; the CLI resolves it to a Tag id by fetching `GET /api/tags` before sending the search request. If the name does not match any Tag, the CLI lists the available Tags in the error message.
+
+<Note>
+  The `skillset search` command always searches **Skills only** — the CLI sends `kind=skill` with every request. To search MCP Servers or Plugins, query the API directly: `GET /api/resources?kind=mcp-server` or `GET /api/resources?kind=plugin`.
+</Note>
 
 ## MCP
 

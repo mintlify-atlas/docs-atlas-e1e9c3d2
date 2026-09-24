@@ -1,7 +1,7 @@
 ---
-title: "Skillset REST API Overview"
+title: "Skillset REST API: Base URL, Auth, and Conventions"
 sidebarTitle: "Overview"
-description: "Base URL, authentication methods, JSON request format, pagination envelope, common error codes, and rate-limiting rules for the Skillset REST API."
+description: "Base URL, authentication methods, request format, pagination envelope, common error codes, and rate-limiting rules for the Skillset REST API."
 ---
 
 The Skillset REST API is a JSON over HTTP interface that backs the web interface, CLI, and MCP server. Every endpoint lives under `<PUBLIC_URL>/api`, where `PUBLIC_URL` is the value you set in your Registry's environment. This page explains the conventions that apply to every route: how to authenticate, what a paginated list looks like, and how errors are shaped.
@@ -76,7 +76,7 @@ Content-Type: application/json
 
 ## Pagination
 
-List endpoints that return many rows accept `page` and `page_size` query parameters and respond with a pagination envelope:
+List endpoints that return many rows accept a `page` query parameter and respond with a pagination envelope. Some endpoints also accept `page_size` to control the number of results per page; others use a fixed page size. See each endpoint's documentation for the exact parameters accepted.
 
 | Field | Type | Description |
 |---|---|---|
@@ -99,8 +99,6 @@ GET /api/resources?page=2&page_size=20
   "total": 83
 }
 ```
-
-Default and maximum page sizes vary by endpoint; see each endpoint's own documentation for the exact limits.
 
 ## Error format
 
@@ -138,11 +136,21 @@ The `field` key is only present when the error is attributable to a specific req
 | `tag_name_conflict` | 409 | A Tag with that name already exists |
 | `already_published` | 409 | A Submission's target `(kind, namespace, name)` is already in the Registry |
 | `source_required` | 400 | A Submission must include a `source` repository URL |
+| `request_rejected` | 4xx | The request was rejected by the framework (e.g. unsupported method or malformed body) |
 | `internal_error` | 500 | An unexpected server-side failure |
 
 ## Rate limiting
 
-Requests are rate-limited per client IP. When a load balancer or proxy sits in front of the Registry, set `TRUSTED_PROXY_IPS` in your environment to the proxy's address so the real client IP is read from `X-Forwarded-For` instead of the socket. Leaving it empty behind a proxy collapses all traffic into one shared rate-limit bucket.
+Requests are rate-limited per client IP using a fixed window. The default limit is **600 requests per 60 seconds**. Two endpoint groups have tighter per-path limits:
+
+| Path prefix | Limit |
+|---|---|
+| `/api/resources` | 300 requests per 60 seconds |
+| `/api/imports` | 60 requests per 60 seconds |
+
+When a load balancer or proxy sits in front of the Registry, set `TRUSTED_PROXY_IPS` in your environment to the proxy's address so the real client IP is read from `X-Forwarded-For` instead of the socket. Leaving it empty behind a proxy collapses all traffic into one shared rate-limit bucket.
+
+When a limit is exceeded, the API responds with `429 rate_limited` and a `retry-after` header indicating how many seconds to wait before retrying.
 
 ## Endpoint groups
 

@@ -54,7 +54,7 @@ An MCP Server's payload is a `server.json`-shaped record with exactly one of two
         }
       ]
     }
-  ```
+    ```
   </Tab>
 </Tabs>
 
@@ -124,12 +124,17 @@ For MCP Servers, an Install is counted when the web interface's config reveal bu
 
 MCP Server resources appear in the same catalog as Skills and Plugins. Use the **Kind** filter to narrow the listing.
 
-```bash
-# CLI: filter by kind (kind filter not yet in CLI; use API directly)
+```http
 GET /api/resources?kind=mcp-server
+```
 
-# All resources, no filter
+```bash
+# List everything — Skills, MCP Servers, and Plugins
 skillset search
 ```
+
+<Note>
+  `skillset search` always returns **Skills only** — the CLI sends `kind=skill` with every request and does not accept a `--kind` flag. To browse MCP Servers from the command line, call the API endpoint above directly.
+</Note>
 
 The `GET /api/resources?kind=mcp-server` endpoint returns MCP Server entries in the same `SkillDirectoryPage` shape as other Resources. No authentication is required.

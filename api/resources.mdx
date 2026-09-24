@@ -419,7 +419,7 @@ curl https://registry.example.com/api/resources/018f1234-abcd-7000-8000-00000000
 GET /api/resources/:id/artifact
 ```
 
-Assembles the full Artifact on demand as a zip archive and returns it. Records one install event per unique client (deduplicated by IP and User-Agent within a window). No authentication required.
+Assembles the full Artifact on demand as a zip archive and returns it. Records one install event per unique client per day (deduplicated by IP and User-Agent hash). No authentication required.
 
 ### Path parameters
 

@@ -1,7 +1,7 @@
 ---
-title: "Skillset CLI Command Reference"
+title: "Skillset CLI Command Reference: All Flags and Options"
 sidebarTitle: "Commands"
-description: "Full reference for every Skillset CLI command — flags, defaults, examples, and the outcomes each command can return."
+description: "Full reference for every Skillset CLI command: login, search, install, publish, and more — with all flags, defaults, and examples."
 ---
 
 The Skillset CLI exposes ten commands that cover the full lifecycle of a Skill: authenticating against a Registry, searching and reading the catalog, installing and managing Skills locally, and publishing new ones. Every command accepts `--json` for machine-readable output; see [CI & Automation](/cli/ci-automation) for non-interactive usage.
@@ -238,7 +238,7 @@ skillset install <name|url> [--name <skill>] [--namespace <ns>] [--agent <id>] [
 </ParamField>
 
 <ParamField path="--agent" type="string">
-  Which coding agent to install for. If omitted and a terminal is attached, the CLI presents an interactive picker. If omitted with no terminal, the agent is detected from the environment. Required under `--json`.
+  Which coding agent to install for. If omitted and a terminal is attached, the CLI presents an interactive picker. If omitted with no terminal (including `--json` mode), the agent is detected from the environment and the project's agent directories.
 </ParamField>
 
 <ParamField path="--scope" type="string">
@@ -254,7 +254,7 @@ skillset install <name|url> [--name <skill>] [--namespace <ns>] [--agent <id>] [
 </ParamField>
 
 <ParamField path="--json" type="boolean">
-  Emit the result as JSON on stdout. Requires `--agent` and `--scope`.
+  Emit the result as JSON on stdout. Requires `--scope` — if `--agent` is omitted, the agent is auto-detected rather than prompted for.
 </ParamField>
 
 **Examples**

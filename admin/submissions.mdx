@@ -1,5 +1,5 @@
 ---
-title: "Review and Approve Community Skill Submissions"
+title: "Review and Approve URL-Installed Skill Submissions"
 sidebarTitle: "Submissions"
 description: "How admins review, approve, and reject URL-installed Skill Submissions. Covers the full lifecycle: from install and pending state through to catalog entry."
 ---
@@ -177,6 +177,10 @@ A successful rejection returns `204 No Content`.
 
 <ResponseField name="source" type="string">
   The repository URL the Skill was cloned from. Always a repository URL — a Submission can only exist because the bytes came from somewhere other than this Registry.
+</ResponseField>
+
+<ResponseField name="allowed_tools" type="string | null">
+  The `allowed-tools` value parsed from the Skill's `SKILL.md` frontmatter, or `null` if none was declared.
 </ResponseField>
 
 <ResponseField name="submitted_by_email" type="string">
