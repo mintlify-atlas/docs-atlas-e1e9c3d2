@@ -1,72 +1,114 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Skillset",
+  "theme": "luma",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "primary": "#6366f1",
+    "light": "#818cf8",
+    "dark": "#4338ca"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
     "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "type": "github",
+      "href": "https://github.com/org-quicko/skillset"
     }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/org-quicko/skillset"
     }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Docs",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "concepts"
+            ]
+          },
+          {
+            "group": "Deployment",
+            "pages": [
+              "deployment/docker",
+              "deployment/configuration",
+              "deployment/database",
+              "deployment/storage"
+            ]
+          },
+          {
+            "group": "Authentication",
+            "pages": [
+              "auth/overview",
+              "auth/identity-providers",
+              "auth/tokens"
+            ]
+          },
+          {
+            "group": "CLI",
+            "pages": [
+              "cli/installation",
+              "cli/commands",
+              "cli/ci-automation"
+            ]
+          },
+          {
+            "group": "MCP Server",
+            "pages": [
+              "mcp/overview",
+              "mcp/configuration",
+              "mcp/tools"
+            ]
+          },
+          {
+            "group": "Registry Features",
+            "pages": [
+              "features/skills",
+              "features/mcp-servers",
+              "features/plugins",
+              "features/import",
+              "features/search",
+              "features/tags"
+            ]
+          },
+          {
+            "group": "Administration",
+            "pages": [
+              "admin/users",
+              "admin/integrations",
+              "admin/submissions"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/resources",
+              "api/tags",
+              "api/users",
+              "api/auth",
+              "api/imports",
+              "api/integrations",
+              "api/connections",
+              "api/submissions"
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
